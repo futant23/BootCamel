@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://camel.apache.org/schema/spring
+        http://camel.apache.org/schema/spring/camel-spring.xsd ">
+
+    
+    <bean id="echoBean" class="rtsw.bootcamel.domain.UserEcho" />
+    
+    <camelContext xmlns="http://camel.apache.org/schema/spring" trace="true" autoStartup="true">
+        <template id="producerTemplate"/>
+        <consumerTemplate id="consumerTemplate" />
+
+        <dataFormats>
+            <jaxb id="jaxb" prettyPrint="true" contextPath="rtsw.bootcamel.domain" />
+        </dataFormats>
+
+
+        <route>
+            <from uri="activemq:queue:user"/>
+            <unmarshal ref="jaxb" />    
+            <bean ref="echoBean" method="echo"/>
+        </route>
+
+    </camelContext>
+
+</beans>
