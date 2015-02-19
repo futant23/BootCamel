@@ -7,6 +7,7 @@ package rtsw.bootcamel.domain;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -16,11 +17,15 @@ public class UserEcho {
     
     private final static Logger log =LoggerFactory.getLogger(UserEcho.class);
     
+    @Autowired
+    private UserRepository repository;
+    
     public void echo(String msg) {
         log.info("string echo: "+msg);
     }
     
     public void echo(User user) {
-        log.info("user echo: "+user.toString());
+        log.info("saving user: "+user.toString());
+        repository.save(user);
     }
 }
