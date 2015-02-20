@@ -43,17 +43,42 @@ public class Application extends SpringBootServletInitializer {
 
 @RestController
 class GreetingController {
-
+    
+    private static final Logger log = LoggerFactory.getLogger(GreetingController.class);
+    
     @Autowired
     private UserRepository repository;
 
+    /**
+     * get all Users based on Last Name
+     * @param lastName
+     * @return 
+     */
+    @RequestMapping("/lastname/{lastName}")
+    String getUserLastName(@PathVariable String lastName) {
+        log.info("locating users with last name: "+lastName);
+        return repository.findByLastName(lastName).toString();
+    }
+    
+    /**
+     * get all Users based on First Name
+     * @param firstName
+     * @return 
+     */
+    @RequestMapping("/firstname/{firstName}")
+    String getUserFirstName(@PathVariable String firstName) {
+        log.info("locating users with first name: "+firstName);
+        return repository.findByFirstName(firstName).toString();
+    }
+    
+    
+    /**
+     * Get All Users
+     * @return 
+     */
     @RequestMapping("/users")
     String users() {
         return repository.findAll().toString();
     }
 
-    @RequestMapping("/hello/{name}")
-    String hello(@PathVariable String name) {
-        return "Hello, " + name + "!";
-    }
 }

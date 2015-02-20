@@ -45,7 +45,7 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>    
      
-      <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
@@ -109,7 +109,7 @@
                 <configuration>
                     <tasks>
                         <copy file="src/main/java/rtsw/bootcamel/domain/jaxb.index" 
-                                                      tofile="target/classes/rtsw/bootcamel/domain/jaxb.index" />
+                              tofile="target/classes/rtsw/bootcamel/domain/jaxb.index" />
                     </tasks>
                 </configuration>
             </plugin>

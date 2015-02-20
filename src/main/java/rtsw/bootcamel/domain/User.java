@@ -30,17 +30,23 @@ public class User {
     @GeneratedValue
     private Long id;
     
+    @XmlAttribute
+    private String lastName;
+    
+    @XmlAttribute
+    private String firstName;
+    
    @XmlAttribute
     private int age;
-
-    
+ 
     public User() {}
 
-    public User(int age) {
-        this();
+    public User(Long id, String lastName, String firstName, int age) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.age = age;
     }
-    
    
     public int getAge() {
         return age;
@@ -57,8 +63,25 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
-    
-   @Override public String toString() {
-        return "User{" + "age=" + age + '}';
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", age=" + age + '}';
     }
 }
