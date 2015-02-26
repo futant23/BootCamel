@@ -27,6 +27,7 @@
         <route>
             <from uri="activemq:queue:user"/>
             <unmarshal ref="jaxb" />    
+            <wireTap uri="file://C:/Users/b1050502/Desktop/test" />
             <bean ref="echoBean" method="echo"/>
         </route>
 
